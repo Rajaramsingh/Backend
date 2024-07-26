@@ -1,24 +1,11 @@
-// import http from 'http' ;
+const express = require('express')
+const app = express()
+const PORT = 3000
 
-let http = require("http");
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-let fs = require("fs");
-
-console.log("starting server");
-
-http
-   .createServer((req, res) => {
-   fs.readFile('response.html',(err,data) => {
-    if(!err){
-        res.writeHead(200, {
-            "Content-Type":"text/html",
-        })
-        res.write(data);
-        return res.end()
-    }
-    res.write("error while reading file");
-    return res.end();
-   })
-    
-   })
-    .listen(3000);
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
+})
